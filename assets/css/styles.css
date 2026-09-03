@@ -390,7 +390,7 @@ section{position:relative; overflow:hidden;}
    single timed cycle (plays once per hover, not a loop), so you don't
    need to move the mouse away to get the text back. Runs on opacity
    and filter only, gated behind the site-wide reduced-motion rule. */
-.service-card-inner{position:absolute; inset:0;}
+.service-card-inner{position:absolute; inset:0; border-radius:inherit;}
 .service-card-face{position:absolute; inset:0; border-radius:inherit; overflow:hidden;}
 .service-card-front{
   padding:36px 30px 32px; display:flex; flex-direction:column;
@@ -462,6 +462,35 @@ section{position:relative; overflow:hidden;}
 .service-card-link{margin-top:16px; display:inline-flex; align-items:center; gap:6px; font-weight:700; color:var(--teal-700); font-size:.9rem;}
 .service-card-link svg{width:16px; height:16px; transition:transform .25s;}
 .service-card:hover .service-card-link svg{transform:translateX(4px);}
+
+/* Groups a long service grid into labeled categories so a 17-card wall
+   reads as a set of distinct, scannable sections instead of one repeated
+   block. */
+.service-group{margin-bottom:clamp(56px, 7vw, 88px);}
+.service-group:last-child{margin-bottom:0;}
+.service-group-head{
+  display:flex; align-items:flex-start; gap:18px;
+  margin-bottom:32px; padding-bottom:22px; border-bottom:1px solid var(--border);
+}
+.service-group-icon{
+  width:46px; height:46px; border-radius:14px; flex-shrink:0;
+  display:grid; place-items:center;
+  background:var(--sg-bg, var(--teal-100)); color:var(--sg-fg, var(--teal-700));
+}
+.service-group-icon svg{width:22px; height:22px; stroke-width:2.2;}
+.service-group-text{flex:1; min-width:0;}
+.service-group-text h3{font-size:clamp(1.3rem, 1.05rem + .9vw, 1.6rem); margin-bottom:6px;}
+.service-group-text p{color:var(--muted); font-size:.98rem; max-width:560px;}
+.service-group-count{
+  flex-shrink:0; align-self:flex-start; margin-top:2px;
+  font-size:.78rem; font-weight:700; color:var(--muted-2);
+  background:var(--surface-blue); padding:5px 12px; border-radius:var(--radius-full);
+  white-space:nowrap;
+}
+@media (max-width:640px){
+  .service-group-head{flex-wrap:wrap;}
+  .service-group-count{margin-left:62px;}
+}
 
 /* Feature (Clínica / Tienda) cards */
 .feature-card{

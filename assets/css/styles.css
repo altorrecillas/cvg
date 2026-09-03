@@ -359,14 +359,34 @@ section{position:relative; overflow:hidden;}
 
 .service-card{
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
-  padding:32px 28px; transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
   position:relative; box-shadow:var(--shadow-sm);
+  min-height:330px; perspective:1400px;
 }
 .service-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-md); border-color:var(--sv-ring, var(--teal-700));}
+
+/* Flip on hover to reveal a real photo on the back — matches the official
+   site's specialty cards. Rotation only (compositor-friendly); the lift
+   above still runs on the outer card at the same time. */
+.service-card-inner{
+  position:absolute; inset:0;
+  transition:transform .7s var(--ease); transform-style:preserve-3d;
+}
+.service-card:hover .service-card-inner{transform:rotateY(180deg);}
+.service-card-face{
+  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  border-radius:inherit; overflow:hidden;
+}
+.service-card-front{padding:32px 28px; background:var(--surface); display:flex; flex-direction:column;}
+.service-card-back{transform:rotateY(180deg); display:flex; align-items:flex-end; background:var(--border);}
+.service-card-back picture{position:absolute; inset:0;}
+.service-card-back img{width:100%; height:100%; object-fit:cover;}
+.service-card-back::after{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(9,17,17,.85), rgba(9,17,17,.1) 65%);}
+.service-card-back h3{position:relative; z-index:1; color:#fff; padding:20px 22px; margin:0; font-size:1.1rem;}
 /* Solid gold circle + bold dark line-art — matches the icon badges used
    for each specialty on the official site. */
 .service-icon{
-  width:68px; height:68px; border-radius:50%; display:grid; place-items:center; margin-bottom:22px;
+  width:68px; height:68px; flex-shrink:0; border-radius:50%; display:grid; place-items:center; margin-bottom:22px;
   background:var(--gold);
   color:var(--navy-deep);
   box-shadow:inset 0 -3px 6px rgba(0,0,0,.08);

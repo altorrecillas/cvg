@@ -371,7 +371,7 @@ section{position:relative; overflow:hidden;}
 
 .service-card{
   background:linear-gradient(165deg, var(--surface) 55%, var(--sv-bg, var(--teal-100)) 165%);
-  border:0; border-radius:var(--radius-lg);
+  border:0; border-radius:28px;
   padding:36px 30px 32px;
   transition:transform .35s var(--ease), box-shadow .35s var(--ease);
   position:relative; box-shadow:0 0 0 1px var(--border), var(--shadow-sm);

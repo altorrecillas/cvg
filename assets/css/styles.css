@@ -502,6 +502,9 @@ section{position:relative; overflow:hidden;}
    reads as a set of distinct, scannable sections instead of one repeated
    block. */
 .service-group{margin-bottom:clamp(56px, 7vw, 88px); scroll-margin-top:150px;}
+/* Any plain section targeted by a .service-subnav pill needs the same
+   scroll offset so its heading doesn't land under the sticky bar. */
+.anchor-target{scroll-margin-top:150px;}
 .service-group:last-child{margin-bottom:0;}
 .service-group-head{
   display:flex; align-items:flex-start; gap:18px;
@@ -723,8 +726,13 @@ section{position:relative; overflow:hidden;}
   display:none; align-items:center; gap:14px; background:var(--teal-50); border:1px solid var(--teal-100);
   padding:18px 20px; border-radius:var(--radius-md); margin-top:20px; color:var(--teal-700); font-weight:600;
 }
-.form-success.is-visible{display:flex;}
+.form-success.is-visible{display:flex; animation:success-in .45s var(--ease) both;}
+@keyframes success-in{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);}}
 .form-success svg{width:24px; height:24px; flex-shrink:0;}
+.form-success svg circle, .form-success svg path{stroke-dasharray:100; stroke-dashoffset:100;}
+.form-success.is-visible svg circle{animation:draw-stroke .5s .15s var(--ease) forwards;}
+.form-success.is-visible svg path{animation:draw-stroke .35s .55s var(--ease) forwards;}
+@keyframes draw-stroke{to{stroke-dashoffset:0;}}
 
 /* ---------- Instagram grid ---------- */
 .insta-grid{display:grid; grid-template-columns:repeat(6,1fr); gap:14px;}

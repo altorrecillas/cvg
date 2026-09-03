@@ -52,8 +52,8 @@
 </symbol>
 
 <symbol id="i-check-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="12" r="8.5"/>
-  <path d="m8.3 12.3 2.5 2.5 5-5.2"/>
+  <circle cx="12" cy="12" r="8.5" pathLength="100"/>
+  <path d="m8.3 12.3 2.5 2.5 5-5.2" pathLength="100"/>
 </symbol>
 
 <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor" stroke="none">

@@ -115,12 +115,17 @@
     counters.forEach(el => io2.observe(el));
   }
 
-  /* Service category sub-nav: highlights whichever group is currently
-     in view as you scroll, so the sticky pill bar tracks your position. */
-  const subnav = $('.service-subnav');
-  const serviceGroups = $$('.service-group[id]');
-  if (subnav && serviceGroups.length && 'IntersectionObserver' in window) {
-    const subnavLinks = $$('.service-subnav a', subnav);
+  /* Sticky sub-nav scroll-spy: highlights whichever section a pill
+     bar points to is currently in view. Targets are read from each
+     link's own href, so this works for any set of sections (the
+     grouped service cards, or a plain page section) without the
+     sections needing a specific class. */
+  $$('.service-subnav').forEach(subnav => {
+    const subnavLinks = $$('a', subnav);
+    const targets = subnavLinks
+      .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+      .filter(Boolean);
+    if (!targets.length || !('IntersectionObserver' in window)) return;
     const setActiveGroup = (id) => {
       subnavLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
     };
@@ -129,8 +134,8 @@
         if (entry.isIntersecting) setActiveGroup(entry.target.id);
       });
     }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-    serviceGroups.forEach(g => groupObserver.observe(g));
-  }
+    targets.forEach(t => groupObserver.observe(t));
+  });
 
   /* FAQ accordion */
   $$('.faq-item').forEach((item, i) => {

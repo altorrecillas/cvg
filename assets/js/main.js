@@ -159,12 +159,23 @@
     });
   });
 
-  /* Back to top + floating actions visibility */
+  /* Back to top: visible past 500px, with a ring showing how far through
+     the page you are (full circle = at the bottom). */
   const topBtn = $('.float-btn.top');
   if (topBtn) {
-    window.addEventListener('scroll', () => {
+    const ringFill = $('.progress-ring-fill', topBtn);
+    const circumference = ringFill ? 2 * Math.PI * ringFill.r.baseVal.value : 0;
+    if (ringFill) ringFill.style.strokeDasharray = String(circumference);
+    const onScroll = () => {
       topBtn.classList.toggle('is-visible', window.scrollY > 500);
-    }, { passive: true });
+      if (ringFill) {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+        ringFill.style.strokeDashoffset = String(circumference * (1 - pct));
+      }
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
     topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 

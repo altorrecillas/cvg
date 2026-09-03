@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://clinicaveterinariagava.com/sitemap.xml
+Sitemap: https://cvg.torrecillas.cat/sitemap.xml

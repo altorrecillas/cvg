@@ -361,26 +361,28 @@ section{position:relative; overflow:hidden;}
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
   transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
   position:relative; box-shadow:var(--shadow-sm);
-  min-height:330px; perspective:1400px;
+  min-height:330px;
 }
 .service-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-md); border-color:var(--sv-ring, var(--teal-700));}
 
-/* Flip on hover to reveal a real photo on the back — matches the official
-   site's specialty cards. Rotation only (compositor-friendly); the lift
-   above still runs on the outer card at the same time. */
-.service-card-inner{
-  position:absolute; inset:0;
-  transition:transform .65s cubic-bezier(.34,1.35,.64,1); transform-style:preserve-3d;
-}
-.service-card:hover .service-card-inner{transform:rotateY(180deg);}
-.service-card-face{
-  position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
-  border-radius:inherit; overflow:hidden;
-}
+/* Hover reveals a real photo as a blurred cross-dissolve, holds it a
+   couple of seconds, then dissolves back to the text on its own — a
+   single timed cycle (plays once per hover, not a loop), so you don't
+   need to move the mouse away to get the text back. Runs on opacity
+   and filter only, gated behind the site-wide reduced-motion rule. */
+.service-card-inner{position:absolute; inset:0;}
+.service-card-face{position:absolute; inset:0; border-radius:inherit; overflow:hidden;}
 .service-card-front{padding:32px 28px; background:var(--surface); display:flex; flex-direction:column;}
 .service-card-back{
-  transform:rotateY(180deg); display:flex; align-items:flex-end;
+  display:flex; align-items:flex-end; opacity:0; filter:blur(14px);
   background:var(--border) var(--photo-url) center/cover no-repeat;
+}
+.service-card:hover .service-card-back{animation:photo-dissolve-cycle 3.8s var(--ease) 1;}
+@keyframes photo-dissolve-cycle{
+  0%{opacity:0; filter:blur(14px);}
+  18%{opacity:1; filter:blur(0);}
+  72%{opacity:1; filter:blur(0);}
+  100%{opacity:0; filter:blur(14px);}
 }
 .service-card-back::after{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(9,17,17,.85), rgba(9,17,17,.1) 65%);}
 .service-card-back h3{position:relative; z-index:1; color:#fff; padding:20px 22px; margin:0; font-size:1.1rem;}

@@ -12,6 +12,19 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  /* Hero-to-content fade: builds in as you scroll through the hero
+     (0 at the top, 1 once you've scrolled past it), instead of sitting
+     there as a fixed gradient from page load. */
+  const hero = $('.hero, .page-hero');
+  if (hero) {
+    const onHeroScroll = () => {
+      const progress = Math.min(1, Math.max(0, window.scrollY / hero.offsetHeight));
+      hero.style.setProperty('--hero-fade', progress.toFixed(3));
+    };
+    onHeroScroll();
+    window.addEventListener('scroll', onHeroScroll, { passive: true });
+  }
+
   const here = location.pathname.split('/').pop() || 'index.html';
   $$('.nav-links a').forEach(a => {
     const href = a.getAttribute('href');

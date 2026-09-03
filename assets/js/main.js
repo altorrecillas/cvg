@@ -40,20 +40,29 @@
   }
 
   /* Scroll reveal */
-  const revealEls = $$('[data-reveal], [data-reveal-group]');
-  if (revealEls.length) {
+  const revealEls = $$('[data-reveal]');
+  const revealGroupEls = $$('[data-reveal-group]');
+  if (revealEls.length || revealGroupEls.length) {
     if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
+      const onIntersect = (io) => (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
             io.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-      revealEls.forEach(el => io.observe(el));
+      };
+      // Single elements: a real fraction-visible check works since they're viewport-sized.
+      const io1 = new IntersectionObserver((e) => onIntersect(io1)(e), { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      revealEls.forEach(el => io1.observe(el));
+      // Groups (e.g. a long stacked grid on mobile) can be far taller than any viewport,
+      // so a 15%-of-the-whole-element threshold could mathematically never be reached —
+      // fire as soon as any part of the group enters view instead.
+      const io2 = new IntersectionObserver((e) => onIntersect(io2)(e), { threshold: 0, rootMargin: '0px 0px -60px 0px' });
+      revealGroupEls.forEach(el => io2.observe(el));
     } else {
       revealEls.forEach(el => el.classList.add('in-view'));
+      revealGroupEls.forEach(el => el.classList.add('in-view'));
     }
   }
 

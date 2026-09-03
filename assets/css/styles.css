@@ -68,6 +68,10 @@ body{
 ::-webkit-scrollbar-thumb:hover{background:var(--teal-800);}
 
 img{max-width:100%; display:block;}
+/* A light, consistent color grade across every real photo (always
+   wrapped in <picture> — logos/illustrations never are) so shots taken
+   at different times read as one coherent set rather than a raw mix. */
+picture img{filter:saturate(1.08) contrast(1.03) brightness(1.01);}
 a{color:inherit; text-decoration:none;}
 ul{list-style:none; margin:0; padding:0;}
 button{font:inherit; cursor:pointer;}
@@ -121,6 +125,11 @@ section{position:relative; overflow:hidden;}
 .bg-navy{background:var(--navy-deep); color:#fff;}
 .bg-navy .section-head p{color:rgba(255,255,255,.72);}
 .bg-navy h2, .bg-navy h3{color:#fff;}
+/* Soft top/bottom blend where a full-bleed dark section is sandwiched
+   between light ones, echoing the hero's dissolve at the same seams. */
+.bg-navy::before, .bg-navy::after{content:''; position:absolute; inset-inline:0; height:50px; pointer-events:none; z-index:1;}
+.bg-navy::before{top:0; background:linear-gradient(180deg, var(--bg), transparent);}
+.bg-navy::after{bottom:0; background:linear-gradient(0deg, var(--bg), transparent);}
 
 /* layered section divider blobs */
 .section-divider{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0;}
@@ -737,7 +746,11 @@ section{position:relative; overflow:hidden;}
 .cta-strip p{color:rgba(255,255,255,.95); margin-top:6px;}
 
 /* ---------- Footer ---------- */
-.site-footer{background:var(--navy-deep); color:rgba(255,255,255,.72); padding-top:80px;}
+.site-footer{
+  background:var(--navy-deep); color:rgba(255,255,255,.72); padding-top:80px;
+  background-image:radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1.4px);
+  background-size:24px 24px;
+}
 .footer-top{display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:56px; border-bottom:1px solid rgba(255,255,255,.1);}
 .footer-brand img{height:40px; width:auto; margin-bottom:18px;}
 .footer-brand p{font-size:.92rem; line-height:1.7; max-width:320px;}

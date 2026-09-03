@@ -135,6 +135,10 @@
 
 <section class="page-hero">
   <div class="hero-bg"><picture><source srcset="assets/img/photos/exam-1.webp" type="image/webp"><img src="assets/img/photos/exam-1.jpg" alt="Veterinarios atendiendo a un paciente" width="1800" height="1200" fetchpriority="high"></picture></div>
+  <div class="hero-shapes" aria-hidden="true">
+    <svg width="130" height="130" style="top:14%; right:6%; opacity:.16" viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#i-paw" fill="#fff"></use></svg>
+    <svg width="80" height="80" style="bottom:20%; right:20%; opacity:.13" viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#i-paw" fill="#fff"></use></svg>
+  </div>
   <div class="container">
     <div class="breadcrumbs"><a href="index.html">Inicio</a> <svg width="14" height="14" aria-hidden="true"><use href="assets/icons.svg#i-chevron-right"></use></svg> <span>Servicios</span></div>
     <h1>Conoce nuestros servicios veterinarios</h1>
@@ -142,11 +146,54 @@
   </div>
 </section>
 
+<section class="section-pad-sm bg-surface">
+  <div class="container">
+    <div class="stats-bar" data-reveal-group>
+      <div class="stat"><h3 data-count="17" data-suffix="">17</h3><p>Especialidades</p></div>
+      <div class="stat"><h3 data-count="30" data-suffix="+">30+</h3><p>Años de experiencia</p></div>
+      <div class="stat"><h3 data-count="7" data-suffix="">7</h3><p>Profesionales dedicados</p></div>
+      <div class="stat"><h3 data-count="391" data-suffix="">391</h3><p>Reseñas en Google</p></div>
+    </div>
+  </div>
+</section>
+
+<nav class="service-subnav" aria-label="Categorías de servicios">
+  <div class="container">
+    <div class="service-subnav-inner">
+      <a href="#grupo-diagnostico">Diagnóstico</a>
+      <a href="#grupo-cirugia">Cirugía</a>
+      <a href="#grupo-prevencion">Prevención</a>
+      <a href="#grupo-bienestar">Bienestar</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section-pad-sm bg-teal-50">
+  <div class="container">
+    <div class="service-spotlight" data-reveal>
+      <div class="service-spotlight-media">
+        <picture><source srcset="assets/img/photos/cirugia-2.webp" type="image/webp"><img src="assets/img/photos/cirugia-2.jpg" alt="Equipo quirúrgico en intervención" width="500" height="700" loading="lazy" decoding="async"></picture>
+      </div>
+      <div class="service-spotlight-body">
+        <div class="eyebrow"><svg aria-hidden="true"><use href="assets/icons.svg#i-scalpel"></use></svg> Servicio destacado</div>
+        <h2>Cirugía con quirófano propio</h2>
+        <p>Contamos con quirófano equipado, monitorización anestésica constante y un equipo veterinario con años de experiencia para acompañar a tu mascota en las intervenciones más delicadas.</p>
+        <ul class="service-spotlight-points">
+          <li><svg aria-hidden="true"><use href="assets/icons.svg#i-check-circle"></use></svg> Anestesia monitorizada</li>
+          <li><svg aria-hidden="true"><use href="assets/icons.svg#i-check-circle"></use></svg> Quirófano propio y esterilizado</li>
+          <li><svg aria-hidden="true"><use href="assets/icons.svg#i-check-circle"></use></svg> Seguimiento post-operatorio</li>
+        </ul>
+        <a href="#cirugia" class="btn btn-primary">Ver todos los detalles <svg aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"></use></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section-pad bg-surface">
   <div class="container">
     <h2 class="visually-hidden">Todas las especialidades</h2>
 
-    <div class="service-group">
+    <div class="service-group" id="grupo-diagnostico">
       <div class="service-group-head">
         <div class="service-group-icon" style="--sg-bg:#dcf0ec; --sg-fg:#0d4a44"><svg aria-hidden="true"><use href="assets/icons.svg#i-microscope"></use></svg></div>
         <div class="service-group-text">
@@ -225,7 +272,7 @@
       </div>
     </div>
 
-    <div class="service-group">
+    <div class="service-group" id="grupo-cirugia">
       <div class="service-group-head">
         <div class="service-group-icon" style="--sg-bg:#dfe9ef; --sg-fg:#274a61"><svg aria-hidden="true"><use href="assets/icons.svg#i-scalpel"></use></svg></div>
         <div class="service-group-text">
@@ -291,7 +338,7 @@
       </div>
     </div>
 
-    <div class="service-group">
+    <div class="service-group" id="grupo-prevencion">
       <div class="service-group-head">
         <div class="service-group-icon" style="--sg-bg:#faecd3; --sg-fg:#8a560a"><svg aria-hidden="true"><use href="assets/icons.svg#i-syringe"></use></svg></div>
         <div class="service-group-text">
@@ -370,7 +417,7 @@
       </div>
     </div>
 
-    <div class="service-group">
+    <div class="service-group" id="grupo-bienestar">
       <div class="service-group-head">
         <div class="service-group-icon" style="--sg-bg:#e6e2ec; --sg-fg:#453268"><svg aria-hidden="true"><use href="assets/icons.svg#i-paw"></use></svg></div>
         <div class="service-group-text">

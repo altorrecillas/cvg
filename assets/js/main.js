@@ -14,12 +14,20 @@
 
   /* Hero-to-content fade: builds in as you scroll through the hero
      (0 at the top, 1 once you've scrolled past it), instead of sitting
-     there as a fixed gradient from page load. */
+     there as a fixed gradient from page load. Also drives a subtle
+     parallax on the hero photo and its decorative paw shapes, each
+     moving at a different rate for depth — skipped under
+     reduced-motion since it's purely decorative. */
   const hero = $('.hero, .page-hero');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (hero) {
     const onHeroScroll = () => {
-      const progress = Math.min(1, Math.max(0, window.scrollY / hero.offsetHeight));
+      const scrollY = window.scrollY;
+      const progress = Math.min(1, Math.max(0, scrollY / hero.offsetHeight));
       hero.style.setProperty('--hero-fade', progress.toFixed(3));
+      if (!reduceMotion && scrollY < hero.offsetHeight * 1.4) {
+        hero.style.setProperty('--parallax', (scrollY * 0.12).toFixed(1) + 'px');
+      }
     };
     onHeroScroll();
     window.addEventListener('scroll', onHeroScroll, { passive: true });
@@ -105,6 +113,23 @@
       });
     }, { threshold: 0.5 });
     counters.forEach(el => io2.observe(el));
+  }
+
+  /* Service category sub-nav: highlights whichever group is currently
+     in view as you scroll, so the sticky pill bar tracks your position. */
+  const subnav = $('.service-subnav');
+  const serviceGroups = $$('.service-group[id]');
+  if (subnav && serviceGroups.length && 'IntersectionObserver' in window) {
+    const subnavLinks = $$('.service-subnav a', subnav);
+    const setActiveGroup = (id) => {
+      subnavLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+    };
+    const groupObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActiveGroup(entry.target.id);
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    serviceGroups.forEach(g => groupObserver.observe(g));
   }
 
   /* FAQ accordion */

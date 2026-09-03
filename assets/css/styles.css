@@ -359,10 +359,14 @@ section{position:relative; overflow:hidden;}
 
 .service-card{
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md);
+  padding:32px 28px;
   transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
   position:relative; box-shadow:var(--shadow-sm);
-  min-height:330px;
 }
+/* Photo-reveal variant (servicios-veterinarios.html): content is
+   absolutely positioned in two stacked faces, so it needs the padding
+   moved to .service-card-front and a fixed height for both faces to fill. */
+.service-card.is-flip{padding:0; min-height:330px;}
 .service-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-md); border-color:var(--sv-ring, var(--teal-700));}
 
 /* Hover reveals a real photo as a blurred cross-dissolve, holds it a

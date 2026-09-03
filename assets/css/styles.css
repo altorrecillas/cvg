@@ -850,7 +850,7 @@ section{position:relative; overflow:hidden;}
    you scroll down the page, so the button also reads as "how much is
    left" — not just a jump-to-top action. */
 .progress-ring{position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg); pointer-events:none;}
-.progress-ring-track{fill:none; stroke:rgba(255,255,255,.18); stroke-width:3;}
+.progress-ring-track{fill:none; stroke:none;}
 .progress-ring-fill{fill:none; stroke:var(--gold); stroke-width:3; stroke-linecap:round; transition:stroke-dashoffset .12s linear;}
 
 /* ---------- Reveal animation ---------- */

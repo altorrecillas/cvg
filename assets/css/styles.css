@@ -363,18 +363,19 @@ section{position:relative; overflow:hidden;}
   position:relative; box-shadow:var(--shadow-sm);
 }
 .service-card:hover{transform:translateY(-6px); box-shadow:var(--shadow-md); border-color:var(--sv-ring, var(--teal-700));}
+/* Solid gold circle + bold dark line-art — matches the icon badges used
+   for each specialty on the official site. */
 .service-icon{
-  width:64px; height:64px; border-radius:50%; display:grid; place-items:center; margin-bottom:22px;
-  background:var(--sv-bg, var(--teal-100));
-  color:var(--sv-fg, var(--teal-700));
-  border:1.5px solid var(--sv-ring, transparent);
-  box-shadow:inset 0 -3px 6px rgba(0,0,0,.05);
+  width:68px; height:68px; border-radius:50%; display:grid; place-items:center; margin-bottom:22px;
+  background:var(--gold);
+  color:var(--navy-deep);
+  box-shadow:inset 0 -3px 6px rgba(0,0,0,.08);
   transition:background .35s var(--ease), color .35s var(--ease), transform .3s var(--ease);
 }
-.service-icon svg{width:28px; height:28px;}
+.service-icon svg{width:30px; height:30px; stroke-width:2.4;}
 .service-card:hover .service-icon{
-  background:var(--sv-solid, var(--teal-700)); color:#fff; transform:scale(1.06);
-  box-shadow:inset 0 -3px 6px rgba(0,0,0,.18);
+  background:var(--navy-deep); color:var(--gold); transform:scale(1.06) rotate(-4deg);
+  box-shadow:inset 0 -3px 6px rgba(0,0,0,.3);
 }
 
 /* Large photo variant: a big real photo with a soft ambient glow (a blurred copy of itself) bleeding outward */
@@ -807,6 +808,32 @@ section{position:relative; overflow:hidden;}
 .split-media picture{display:block; overflow:hidden; border-radius:var(--radius-lg); box-shadow:0 0 0 5px var(--surface), var(--shadow-md); background:var(--border);}
 .split-media img{display:block; width:100%; height:auto; transition:transform .6s var(--ease);}
 .split-media picture:hover img{transform:scale(1.06);}
+
+/* Pet showcase: a hand-drawn animated cat/dog in place of a photo, for a
+   warmer, more playful moment. Kept to opacity/transform only so the
+   site-wide prefers-reduced-motion rule freezes it like everything else. */
+.pet-showcase{
+  display:flex; align-items:center; justify-content:center;
+  border-radius:var(--radius-lg); overflow:hidden; padding:32px;
+  box-shadow:0 0 0 5px var(--surface), var(--shadow-md);
+  background:linear-gradient(160deg, var(--teal-50), var(--surface-blue));
+}
+.pet-illustration{width:100%; max-width:300px; height:auto; display:block; overflow:visible;}
+.pet-tail{transform-box:fill-box; transform-origin:0% 100%;}
+.cat-tail{animation:cat-tail-sway 3.2s ease-in-out infinite;}
+.dog-tail{animation:dog-tail-wag .55s ease-in-out infinite;}
+.pet-eye{transform-box:fill-box; transform-origin:50% 50%; animation:pet-blink 4.6s ease-in-out infinite;}
+.dog-illustration .pet-eye{animation-delay:.4s;}
+.pet-tongue{transform-box:fill-box; transform-origin:50% 0%; animation:pet-tongue-move 1.1s ease-in-out infinite;}
+.pet-figure{animation:pet-bob 3.6s ease-in-out infinite;}
+.pet-whiskers{transform-box:fill-box; transform-origin:100% 50%; animation:cat-whiskers-twitch 5.2s ease-in-out infinite;}
+
+@keyframes cat-tail-sway{0%,100%{transform:rotate(-7deg);} 50%{transform:rotate(7deg);}}
+@keyframes dog-tail-wag{0%,100%{transform:rotate(-18deg);} 50%{transform:rotate(18deg);}}
+@keyframes pet-blink{0%,88%,100%{transform:scaleY(1);} 93%{transform:scaleY(.1);}}
+@keyframes pet-tongue-move{0%,100%{transform:translateY(0);} 50%{transform:translateY(3px);}}
+@keyframes pet-bob{0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);}}
+@keyframes cat-whiskers-twitch{0%,85%,100%{transform:rotate(0deg);} 90%{transform:rotate(-3deg);}}
 .split-media .badge-float{
   position:absolute; bottom:-22px; left:-22px; background:var(--surface); border-radius:var(--radius-md); padding:18px 22px; box-shadow:var(--shadow-lg);
   display:flex; align-items:center; gap:14px; z-index:2;

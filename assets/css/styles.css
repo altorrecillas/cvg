@@ -92,10 +92,9 @@ section{position:relative; overflow:hidden;}
 /* ---------- Utility ---------- */
 .visually-hidden{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
 .text-center{text-align:center;}
-.mt-0{margin-top:0;}
 
 /* Eyebrow: a small square mark + sentence-case label — a caption,
-   not a tracked-uppercase badge. on-dark/on-gold keep it legible on photos. */
+   not a tracked-uppercase badge. on-dark keeps it legible on photos. */
 .eyebrow{
   display:inline-flex; align-items:center; gap:10px;
   font-weight:600; font-size:.98rem;
@@ -108,9 +107,6 @@ section{position:relative; overflow:hidden;}
 .eyebrow.on-dark{color:#eaf4f2;}
 .eyebrow.on-dark::before{background:var(--gold);}
 .eyebrow.on-dark svg{color:var(--gold);}
-.eyebrow.on-gold{color:var(--navy-deep);}
-.eyebrow.on-gold::before{background:var(--navy-deep);}
-.eyebrow.on-gold svg{color:var(--navy-deep);}
 
 .section-head{max-width:720px; margin-bottom:48px;}
 .section-head.centered{margin-inline:auto; text-align:center;}
@@ -132,8 +128,6 @@ section{position:relative; overflow:hidden;}
 .bg-navy::after{bottom:0; background:linear-gradient(0deg, var(--bg), transparent);}
 
 /* layered section divider blobs */
-.section-divider{position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0;}
-.section-divider svg{position:absolute;}
 .blob{position:absolute; border-radius:50%; filter:blur(70px); opacity:.35; z-index:0; pointer-events:none;}
 .section-pad > .container{position:relative; z-index:1;}
 
@@ -331,12 +325,9 @@ section{position:relative; overflow:hidden;}
   box-shadow:inset 0 -2px 4px rgba(0,0,0,.05);
 }
 .badge-icon svg{width:20px; height:20px;}
-.badge-icon.bi-lg{width:56px; height:56px; border-radius:var(--radius-md);}
-.badge-icon.bi-lg svg{width:25px; height:25px;}
 .badge-icon.bi-gold{--bi-bg:#faecd3; --bi-fg:#8a560a; --bi-ring:#edcd93;}
 .badge-icon.bi-teal{--bi-bg:#dcf0ec; --bi-fg:#0d4a44; --bi-ring:#aedcd2;}
 .badge-icon.bi-coral{--bi-bg:#dfe9ef; --bi-fg:#274a61; --bi-ring:#b7cdda;}
-.badge-icon.bi-navy{--bi-bg:#dee3e2; --bi-fg:#0f1b1c; --bi-ring:#bcc6c4;}
 .hero-float strong{display:block; font-size:.95rem; font-family:var(--font-head); font-weight:700;}
 .hero-float span{font-size:.78rem; color:var(--muted);}
 
@@ -372,11 +363,10 @@ section{position:relative; overflow:hidden;}
 
 /* ---------- Cards: Services ---------- */
 .grid{display:grid; gap:28px;}
-.grid-3{grid-template-columns:repeat(3,1fr);}
 .grid-4{grid-template-columns:repeat(4,1fr);}
 .grid-2{grid-template-columns:repeat(2,1fr);}
-@media (max-width:960px){.grid-3,.grid-4{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:640px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+@media (max-width:960px){.grid-4{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.grid-2,.grid-4{grid-template-columns:1fr;}}
 
 .service-card{
   background:linear-gradient(165deg, var(--surface) 55%, var(--sv-bg, var(--teal-100)) 165%);
@@ -536,10 +526,6 @@ section{position:relative; overflow:hidden;}
 .team-photo .social svg{width:15px; height:15px;}
 .team-card h3{font-size:1.1rem;}
 .team-card .role{color:var(--teal-700); font-weight:600; font-size:.88rem; margin-top:4px;}
-.team-avatar-fallback{
-  width:100%; height:100%; display:grid; place-items:center; background:linear-gradient(135deg, var(--teal), var(--navy));
-  color:#fff; font-family:var(--font-head); font-size:2.4rem; font-weight:700;
-}
 
 /* ---------- Testimonials ---------- */
 .reviews-summary{display:flex; align-items:center; gap:18px; margin-bottom:36px; flex-wrap:wrap;}
@@ -683,16 +669,6 @@ section{position:relative; overflow:hidden;}
 .insta-grid a:hover img{transform:scale(1.1);}
 .insta-grid a:hover::after, .insta-grid a:hover .ig-ico{opacity:1;}
 @media (max-width:860px){.insta-grid{grid-template-columns:repeat(3,1fr);}}
-
-/* ---------- Timeline (Clínica / Historia) ---------- */
-.timeline{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
-.timeline .step{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-md); padding:26px; position:relative; box-shadow:var(--shadow-sm);}
-.timeline .step .n{
-  width:42px; height:42px; border-radius:50%; background:var(--navy-deep); color:#fff; display:grid; place-items:center;
-  font-family:var(--font-head); font-weight:700; margin-bottom:16px;
-}
-@media (max-width:860px){.timeline{grid-template-columns:repeat(2,1fr);}}
-@media (max-width:520px){.timeline{grid-template-columns:1fr;}}
 
 /* ---------- Shop categories ---------- */
 .shop-cat{border-radius:var(--radius-md); overflow:hidden; position:relative; aspect-ratio:5/7; box-shadow:0 0 0 4px var(--surface), var(--shadow-sm); background:var(--border);}
@@ -933,8 +909,6 @@ section{position:relative; overflow:hidden;}
 .check-list{display:flex; flex-direction:column; gap:14px; margin-top:24px;}
 .check-list li{display:flex; align-items:flex-start; gap:12px; font-weight:600; color:var(--navy-deep);}
 .check-list svg{width:22px; height:22px; color:var(--teal-700); flex-shrink:0; margin-top:1px;}
-
-.badge-pill{display:inline-flex; align-items:center; gap:8px; background:var(--teal-100); color:var(--teal-700); font-weight:700; font-size:.8rem; padding:6px 14px; border-radius:var(--radius-sm);}
 
 .two-col-cta{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
 @media (max-width:760px){.two-col-cta{grid-template-columns:1fr;}}

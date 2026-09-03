@@ -173,14 +173,20 @@
   });
 
   /* Back to top: visible past 500px, with a ring showing how far through
-     the page you are (full circle = at the bottom). */
+     the page you are (full circle = at the bottom). Fades out after a
+     couple of seconds of no scrolling, and reappears the moment you
+     scroll again — so it doesn't just sit there once you stop reading. */
   const topBtn = $('.float-btn.top');
   if (topBtn) {
     const ringFill = $('.progress-ring-fill', topBtn);
     const circumference = ringFill ? 2 * Math.PI * ringFill.r.baseVal.value : 0;
     if (ringFill) ringFill.style.strokeDasharray = String(circumference);
+    let idleTimer = null;
     const onScroll = () => {
       topBtn.classList.toggle('is-visible', window.scrollY > 500);
+      topBtn.classList.remove('is-idle');
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => topBtn.classList.add('is-idle'), 2500);
       if (ringFill) {
         const max = document.documentElement.scrollHeight - window.innerHeight;
         const pct = max > 0 ? Math.min(1, window.scrollY / max) : 0;

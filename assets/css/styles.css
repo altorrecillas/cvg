@@ -693,7 +693,7 @@ section{position:relative; overflow:hidden;}
 .cookie-pref-row input[type="checkbox"]{width:20px; height:20px; accent-color:var(--teal-700); flex-shrink:0; margin-top:2px;}
 .cookie-prefs-panel .btn{margin-top:6px;}
 .footer-cookie-link{background:none; border:0; padding:0; color:inherit; font-size:.82rem; font-family:inherit; transition:color .2s, padding-left .2s;}
-.footer-cookie-link:hover{color:var(--teal); padding-left:4px;}
+.footer-cookie-link:hover{color:var(--gold); padding-left:4px;}
 @media (max-width:760px){
   .cookie-banner-inner{flex-direction:column; align-items:stretch;}
   .cookie-banner-actions{margin-left:0;}
@@ -815,7 +815,7 @@ section{position:relative; overflow:hidden;}
 .footer-col h3{color:#fff; font-family:var(--font-head); font-size:1.1rem; font-weight:700; margin-bottom:20px;}
 .footer-col ul{display:flex; flex-direction:column; gap:12px;}
 .footer-col a{font-size:.92rem; transition:color .2s, padding-left .2s;}
-.footer-col a:hover{color:var(--teal); padding-left:4px;}
+.footer-col a:hover{color:var(--gold); padding-left:4px;}
 .footer-contact-item{display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;}
 .footer-contact-item svg{width:18px; height:18px; color:var(--teal); flex-shrink:0; margin-top:2px;}
 .footer-contact-item span, .footer-contact-item a{font-size:.92rem;}
@@ -823,7 +823,7 @@ section{position:relative; overflow:hidden;}
 .footer-hours div{display:flex; justify-content:space-between; font-size:.88rem; padding:4px 0;}
 .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-block:26px; flex-wrap:wrap; gap:14px; font-size:.82rem;}
 .footer-bottom-links{display:flex; gap:20px; flex-wrap:wrap;}
-.footer-bottom-links a:hover{color:var(--teal);}
+.footer-bottom-links a:hover{color:var(--gold);}
 .footer-kit{display:flex; align-items:center; gap:16px; padding:22px 0; border-top:1px solid rgba(255,255,255,.1); font-size:.78rem; flex-wrap:wrap;}
 .footer-kit img{width:100%; max-width:280px; height:auto; background:#fff; padding:5px 10px; border-radius:8px;}
 

@@ -337,6 +337,7 @@
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       let valid = true;
+      let firstInvalid = null;
       $$('[data-required]', form).forEach(field => {
         const wrapper = field.closest('.field');
         const value = field.value.trim();
@@ -345,9 +346,10 @@
           ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
         }
         wrapper.classList.toggle('has-error', !ok);
-        if (!ok) valid = false;
+        field.setAttribute('aria-invalid', String(!ok));
+        if (!ok) { valid = false; firstInvalid = firstInvalid || field; }
       });
-      if (!valid) return;
+      if (!valid) { firstInvalid.focus(); return; }
 
       const name = form.querySelector('[name="nombre"]').value.trim();
       const email = form.querySelector('[name="email"]').value.trim();
@@ -366,7 +368,10 @@
     });
 
     $$('[data-required]', form).forEach(field => {
-      field.addEventListener('input', () => field.closest('.field').classList.remove('has-error'));
+      field.addEventListener('input', () => {
+        field.closest('.field').classList.remove('has-error');
+        field.setAttribute('aria-invalid', 'false');
+      });
     });
   }
 })();

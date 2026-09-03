@@ -152,13 +152,13 @@
           <form id="contact-form" novalidate>
             <div class="field">
               <label for="nombre">Nombre <span class="required">*</span></label>
-              <input type="text" id="nombre" name="nombre" data-required placeholder="Tu nombre">
-              <span class="field-error">Por favor, indica tu nombre.</span>
+              <input type="text" id="nombre" name="nombre" data-required placeholder="Tu nombre" aria-describedby="nombre-error">
+              <span class="field-error" id="nombre-error" role="alert">Por favor, indica tu nombre.</span>
             </div>
             <div class="field">
               <label for="email">E-mail <span class="required">*</span></label>
-              <input type="email" id="email" name="email" data-required placeholder="tu@email.com">
-              <span class="field-error">Introduce un email válido.</span>
+              <input type="email" id="email" name="email" data-required placeholder="tu@email.com" aria-describedby="email-error">
+              <span class="field-error" id="email-error" role="alert">Introduce un email válido.</span>
             </div>
             <div class="field">
               <label for="telefono">Teléfono</label>
@@ -166,8 +166,8 @@
             </div>
             <div class="field">
               <label for="mensaje">Mensaje <span class="required">*</span></label>
-              <textarea id="mensaje" name="mensaje" data-required placeholder="¿En qué podemos ayudarte?"></textarea>
-              <span class="field-error">Escribe tu mensaje.</span>
+              <textarea id="mensaje" name="mensaje" data-required placeholder="¿En qué podemos ayudarte?" aria-describedby="mensaje-error"></textarea>
+              <span class="field-error" id="mensaje-error" role="alert">Escribe tu mensaje.</span>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Enviar mensaje <svg aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"></use></svg></button>
             <p class="form-note">Al enviar el formulario se abrirá tu cliente de correo para completar el envío a gavavet@gavavet.es.</p>

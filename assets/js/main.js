@@ -192,6 +192,19 @@
     topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
+  /* Service card photo reveal on touch: :hover never fires reliably on
+     touchscreens, so tapping a card triggers the same dissolve-to-photo
+     cycle the CSS already plays on hover, timed to match its duration. */
+  $$('.service-card.is-flip').forEach(card => {
+    let timer = null;
+    card.addEventListener('touchstart', () => {
+      if (card.classList.contains('is-touched')) return;
+      card.classList.add('is-touched');
+      clearTimeout(timer);
+      timer = setTimeout(() => card.classList.remove('is-touched'), 3800);
+    }, { passive: true });
+  });
+
   /* Footer year */
   $$('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 

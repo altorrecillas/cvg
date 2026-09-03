@@ -398,7 +398,7 @@ section{position:relative; overflow:hidden;}
   display:flex; align-items:flex-end; opacity:0; filter:blur(14px);
   background:var(--border) var(--photo-url) center/cover no-repeat;
 }
-.service-card:hover .service-card-back{animation:photo-dissolve-cycle 3.8s var(--ease) 1;}
+.service-card:hover .service-card-back, .service-card.is-touched .service-card-back{animation:photo-dissolve-cycle 3.8s var(--ease) 1;}
 @keyframes photo-dissolve-cycle{
   0%{opacity:0; filter:blur(14px);}
   18%{opacity:1; filter:blur(0);}

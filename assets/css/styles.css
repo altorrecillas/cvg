@@ -818,21 +818,36 @@ section{position:relative; overflow:hidden;}
   box-shadow:0 0 0 5px var(--surface), var(--shadow-md);
   background:linear-gradient(160deg, var(--teal-50), var(--surface-blue));
 }
-.pet-illustration{width:100%; max-width:300px; height:auto; display:block; overflow:visible;}
-.pet-tail{transform-box:fill-box; transform-origin:0% 100%;}
-.cat-tail{animation:cat-tail-sway 3.2s ease-in-out infinite;}
-.dog-tail{animation:dog-tail-wag .55s ease-in-out infinite;}
+.pet-illustration{width:100%; max-width:340px; height:auto; display:block; overflow:visible;}
+
+/* Walk cycle: front/back leg pairs swing in opposite phase like a real
+   quadruped trot, the whole figure bobs twice per stride, and the tail
+   sways independently for a lived-in, unsynced feel. */
+.pet-figure.walk-cycle{animation:walk-bob 1s ease-in-out infinite;}
+.cat-illustration .pet-figure.walk-cycle{animation-duration:1.15s;}
+.leg{transform-box:view-box;}
+.back-leg{animation:leg-swing-back 1s ease-in-out infinite;}
+.front-leg{animation:leg-swing-front 1s ease-in-out infinite;}
+.leg-far{opacity:.82;}
+.cat-illustration .leg{animation-duration:1.15s;}
+.cat-illustration .leg-far{animation-delay:.04s;}
+.dog-illustration .leg-far{animation-delay:.03s;}
+
+.pet-tail{transform-box:view-box;}
+.cat-tail{animation:cat-tail-sway 2.6s ease-in-out infinite;}
+.dog-tail{animation:dog-tail-wag .5s ease-in-out infinite;}
 .pet-eye{transform-box:fill-box; transform-origin:50% 50%; animation:pet-blink 4.6s ease-in-out infinite;}
 .dog-illustration .pet-eye{animation-delay:.4s;}
-.pet-tongue{transform-box:fill-box; transform-origin:50% 0%; animation:pet-tongue-move 1.1s ease-in-out infinite;}
-.pet-figure{animation:pet-bob 3.6s ease-in-out infinite;}
+.pet-tongue{transform-box:fill-box; transform-origin:50% 0%; animation:pet-tongue-move 1s ease-in-out infinite;}
 .pet-whiskers{transform-box:fill-box; transform-origin:100% 50%; animation:cat-whiskers-twitch 5.2s ease-in-out infinite;}
 
-@keyframes cat-tail-sway{0%,100%{transform:rotate(-7deg);} 50%{transform:rotate(7deg);}}
-@keyframes dog-tail-wag{0%,100%{transform:rotate(-18deg);} 50%{transform:rotate(18deg);}}
+@keyframes walk-bob{0%,50%,100%{transform:translateY(0);} 25%,75%{transform:translateY(-4px);}}
+@keyframes leg-swing-front{0%,100%{transform:rotate(20deg);} 50%{transform:rotate(-20deg);}}
+@keyframes leg-swing-back{0%,100%{transform:rotate(-20deg);} 50%{transform:rotate(20deg);}}
+@keyframes cat-tail-sway{0%,100%{transform:rotate(-8deg);} 50%{transform:rotate(10deg);}}
+@keyframes dog-tail-wag{0%,100%{transform:rotate(-20deg);} 50%{transform:rotate(20deg);}}
 @keyframes pet-blink{0%,88%,100%{transform:scaleY(1);} 93%{transform:scaleY(.1);}}
 @keyframes pet-tongue-move{0%,100%{transform:translateY(0);} 50%{transform:translateY(3px);}}
-@keyframes pet-bob{0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);}}
 @keyframes cat-whiskers-twitch{0%,85%,100%{transform:rotate(0deg);} 90%{transform:rotate(-3deg);}}
 .split-media .badge-float{
   position:absolute; bottom:-22px; left:-22px; background:var(--surface); border-radius:var(--radius-md); padding:18px 22px; box-shadow:var(--shadow-lg);
